@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 import tileTypes from './constants/tileTypes';
 import tileData from './data/tiles';
-import { populationPopulatesTile } from './actions';
+import { populationPopulatesTile, populationDepopulatesTile } from './actions';
 
 export const Tile = ({
   availablePopulationId,
   dispatch,
-  populated,
+  populatingPopulationId,
   tileId,
   tileType
 }) => (
@@ -17,15 +17,23 @@ export const Tile = ({
     width="100%"
     height="100%"
     onClick={
-      availablePopulationId
+      populatingPopulationId
         ? () =>
             dispatch(
-              populationPopulatesTile({
-                populationId: availablePopulationId,
+              populationDepopulatesTile({
+                populationId: populatingPopulationId,
                 tileId
               })
             )
-        : null
+        : availablePopulationId
+          ? () =>
+              dispatch(
+                populationPopulatesTile({
+                  populationId: availablePopulationId,
+                  tileId
+                })
+              )
+          : null
     }
   >
     <rect
@@ -34,14 +42,16 @@ export const Tile = ({
       fill={tileData[tileType].color}
       stroke="black"
     />
-    {populated && <circle cx="50%" cy="50%" r="10%" stroke="black" />}
+    {populatingPopulationId && (
+      <circle cx="50%" cy="50%" r="10%" stroke="black" />
+    )}
   </svg>
 );
 
 Tile.defaultProps = {
   availablePopulationId: null,
   dispatch: () => ({}),
-  populated: false,
+  populatingPopulationId: null,
   tileId: uuid(),
   tileType: tileTypes[Math.floor(Math.random() * tileTypes.length)]
 };
@@ -49,7 +59,7 @@ Tile.defaultProps = {
 Tile.propTypes = {
   availablePopulationId: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
-  populated: PropTypes.bool.isRequired,
+  populatingPopulatedId: PropTypes.string,
   tileId: PropTypes.string.isRequired,
   tileType: PropTypes.string.isRequired
 };
@@ -58,9 +68,14 @@ export default connect(({ populations, tiles }, { tileId }) => {
   const availablePopulation = populations.find(
     population => population.populating === null
   );
+  const populatingPopulation = populations.find(
+    population => population.populating === tileId
+  );
   return {
     availablePopulationId: availablePopulation ? availablePopulation.id : null,
-    populated: populations.some(population => population.populating === tileId),
+    populatingPopulationId: populatingPopulation
+      ? populatingPopulation.id
+      : null,
     tileType: tiles.find(tile => tile.id === tileId).type
   };
 })(Tile);

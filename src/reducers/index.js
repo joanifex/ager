@@ -1,6 +1,5 @@
 import uuid from 'uuid/v4';
 import tileTypes from '../constants/tileTypes';
-import tileData from '../data/tiles';
 
 const initialTiles = Array.from(new Array(9)).map(tile => ({
   type: tileTypes[Math.floor(Math.random() * tileTypes.length)],
@@ -33,7 +32,13 @@ export default (state = initialState, action) => {
       };
     case 'POPULATION_DEPOPULATES_TILE':
       return {
-        ...state
+        ...state,
+        populations: state.populations.map(
+          population =>
+            population.id === action.populationId
+              ? { ...population, populating: null }
+              : population
+        )
       };
     default:
       return state;

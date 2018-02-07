@@ -4,7 +4,17 @@ import { connect } from 'react-redux';
 
 export const Stats = (({food, safety, wealth}) => (
   <header>
-    {food}, {safety}, {wealth}
+    <ul>
+      <li>
+        Food: {food}
+      </li>
+      <li>
+        Safety: {safety}
+      </li>
+      <li>
+        Wealth: {wealth}
+      </li>
+    </ul>
   </header>
 ));
 

@@ -1,10 +1,14 @@
-const start = [
-  'grass', 'grass', 'grass',
-  'mountain', 'lake', 'grass',
-  'forest', 'forest', 'forest',
-];
+import uuid from 'uuid/v4';
 
-const tiles = (state = start, action) => {
+const randomTiles = [];
+for (var i = 10; i !== 0; i--) {
+  randomTiles.push({
+    type: 'grass',
+    id: uuid(),
+  });
+}
+
+const tiles = (state = randomTiles, action) => {
   switch (action.type) {
     default: 
       return state;

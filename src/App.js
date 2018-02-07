@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Map from './Map';
+import Grid from './Grid';
 import Stats from './Stats';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
       <div className="app">
         <div id="container">
           <Stats />
-          <Map />
+          <Grid />
         </div>
       </div>
     );

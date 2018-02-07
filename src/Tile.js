@@ -16,9 +16,15 @@ const tiles = {
 };
 
 const Tile = ({tile}) => (
-  <span style={{color: tiles[tile] ? tiles[tile].color : 'black'}}>
-    {tile}
-  </span>
+  <svg width="100%" height="100%">
+    <rect
+      width="100%"
+      height="100%"
+      fill={tiles[tile] ? tiles[tile].color : 'black'}
+      stroke="black"
+    />
+  </svg>
 );
+
 
 export default Tile;

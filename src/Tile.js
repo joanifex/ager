@@ -6,22 +6,19 @@ import tileTypes from './constants/tileTypes';
 import tileData from './data/tiles';
 import { populateTile } from './actions/tiles';
 
-export const Tile = ({dispatch, tile}) => (
-  <svg width="100%" height="100%" onClick={() => dispatch(populateTile(tile.id))}>
+export const Tile = ({ dispatch, tile }) => (
+  <svg
+    width="100%"
+    height="100%"
+    onClick={() => dispatch(populateTile(tile.id))}
+  >
     <rect
       width="100%"
       height="100%"
       fill={tileData[tile.type].color}
       stroke="black"
     />
-    {tile.populated && (
-      <circle
-        cx="50%"
-        cy="50%"
-        r="10%"
-        stroke="black"
-      />
-    )}
+    {tile.populated && <circle cx="50%" cy="50%" r="10%" stroke="black" />}
   </svg>
 );
 
@@ -30,8 +27,8 @@ Tile.defaultProps = {
   tile: {
     id: uuid(),
     populated: false,
-    type: tileTypes[Math.floor(Math.random()*tileTypes.length)],
-  },
+    type: tileTypes[Math.floor(Math.random() * tileTypes.length)]
+  }
 };
 
 Tile.propTypes = {
@@ -39,8 +36,8 @@ Tile.propTypes = {
   tile: PropTypes.shape({
     id: PropTypes.string.isRequired,
     populated: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf(tileTypes),
-  }).isRequired,
+    type: PropTypes.oneOf(tileTypes)
+  }).isRequired
 };
 
 export default connect()(Tile);

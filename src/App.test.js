@@ -10,7 +10,8 @@ it('renders without crashing', () => {
   ReactDOM.render(
     <Provider store={createStore(reducers)}>
       <App />
-    </Provider>
-  , div);
+    </Provider>,
+    div
+  );
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -1,7 +1,12 @@
-.App {
-  text-align: center;
-  display: flex;
-  justify-content: center;
+.app {
   align-items: center;
-  height: 100vh
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
 }

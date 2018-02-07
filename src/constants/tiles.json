@@ -1,0 +1,18 @@
+{
+  "grass": {
+    "color": "#5A783A",
+    "food": 2
+  },
+  "forest": {
+    "color": "#2A381B",
+    "food": 1
+  },
+  "mountain": {
+    "color": "#B2782F",
+    "food": 0
+  },
+  "lake": {
+    "color": "#5399FF",
+    "food": 1
+  }
+}

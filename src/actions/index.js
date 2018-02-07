@@ -3,6 +3,10 @@ export const endTurn = ({ foodProduction }) => ({
   foodProduction
 });
 
+export const createPopulation = () => ({
+  type: 'CREATE_POPULATION'
+});
+
 export const populationPopulatesTile = ({ populationId, tileId }) => ({
   type: 'POPULATION_POPULATES_TILE',
   populationId,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import CreatePopulation from './CreatePopulation';
 import EndTurn from './EndTurn';
 import Grid from './Grid';
 import Stats from './Stats';
@@ -12,6 +13,7 @@ class App extends Component {
         <div id="container">
           <Stats />
           <Grid />
+          <CreatePopulation />
           <EndTurn />
         </div>
       </div>

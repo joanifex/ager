@@ -21,6 +21,12 @@ export default (state = initialState, action) => {
         ...state,
         food: state.food + action.foodProduction
       };
+    case 'CREATE_POPULATION':
+      return {
+        ...state,
+        populations: [...state.populations, { id: uuid(), populating: null }],
+        food: state.food - 3
+      };
     case 'POPULATION_POPULATES_TILE':
       return {
         ...state,

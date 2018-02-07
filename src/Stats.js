@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import tileData from './data/tiles';
 
-export const Stats = (({food, safety, wealth}) => (
+export const Stats = (({food}) => (
   <header>
     <ul>
       <li>
         Food: {food}
-      </li>
-      <li>
-        Safety: {safety}
-      </li>
-      <li>
-        Wealth: {wealth}
       </li>
     </ul>
   </header>
@@ -20,18 +15,14 @@ export const Stats = (({food, safety, wealth}) => (
 
 Stats.defaultProps = {
   food: 0,
-  safety: 0,
-  wealth: 0,
 };
 
 Stats.propTypes = {
   food: PropTypes.number.isRequired,
-  safety: PropTypes.number.isRequired,
-  wealth: PropTypes.number.isRequired,
 };
 
-export default connect(({food, safety, wealth}) => (
-  {food, safety, wealth}
-))(Stats);
+export default connect(({tiles}) => ({
+  food: tiles.reduce((food, tile) => tile.populated ? food + tileData[tile.type].food : food, 0),
+}))(Stats);
 
 

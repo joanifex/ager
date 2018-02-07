@@ -5,7 +5,9 @@ import './Grid.css';
 import Tile from './Tile';
 
 export const Grid = ({ tiles }) => (
-  <div id="map">{tiles.map(tile => <Tile key={tile.id} tile={tile} />)}</div>
+  <div id="map">
+    {tiles.map(tile => <Tile key={tile.id} tileId={tile.id} />)}
+  </div>
 );
 
 Grid.defaultProps = {

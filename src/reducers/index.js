@@ -18,7 +18,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'END_TURN':
       return {
-        ...state
+        ...state,
+        food: state.food + action.foodProduction
       };
     case 'POPULATION_POPULATES_TILE':
       return {

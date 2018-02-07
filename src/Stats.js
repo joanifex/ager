@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import tileData from './data/tiles';
+import { getFoodProduction } from './selectors';
 
 export const Stats = ({ availablePopulations, foodProduction, foodStored }) => (
   <header>
@@ -29,19 +29,11 @@ Stats.propTypes = {
   foodStored: PropTypes.number.isRequired
 };
 
-export default connect(({ populations, tiles }) => ({
-  availablePopulations: populations.reduce(
+export default connect(state => ({
+  availablePopulations: state.populations.reduce(
     (sum, population) => (population.populating === null ? sum + 1 : sum),
     0
   ),
-  foodProduction: populations.reduce(
-    (sum, population) =>
-      population.populating
-        ? sum +
-          tileData[tiles.find(tile => tile.id === population.populating).type]
-            .food
-        : sum,
-    0
-  ),
-  foodStored: 0
+  foodProduction: getFoodProduction(state),
+  foodStored: state.food
 }))(Stats);

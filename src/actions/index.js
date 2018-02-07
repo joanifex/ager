@@ -1,3 +1,8 @@
+export const endTurn = ({ foodProduction }) => ({
+  type: 'END_TURN',
+  foodProduction
+});
+
 export const populationPopulatesTile = ({ populationId, tileId }) => ({
   type: 'POPULATION_POPULATES_TILE',
   populationId,

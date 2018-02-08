@@ -1,6 +1,6 @@
-export const endTurn = ({ foodProduction }) => ({
+export const endTurn = endTurnData => ({
   type: 'END_TURN',
-  foodProduction
+  ...endTurnData
 });
 
 export const createPopulation = () => ({

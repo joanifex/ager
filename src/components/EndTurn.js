@@ -2,24 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { endTurn } from '../actions';
-import { getFoodProduction } from '../selectors';
+import { getEndTurnData } from '../selectors';
 
-export const EndTurn = ({ dispatch, foodProduction }) => (
-  <button onClick={() => dispatch(endTurn({ foodProduction }))}>
-    End Turn
-  </button>
+export const EndTurn = ({ dispatch, endTurnData }) => (
+  <button onClick={() => dispatch(endTurn(endTurnData))}>End Turn</button>
 );
 
 EndTurn.defaultProps = {
   dispatch: () => {},
-  foodProduction: 0
+  endTurnData: {}
 };
 
 EndTurn.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  foodProduction: PropTypes.number.isRequired
+  endTurnData: PropTypes.object.isRequired
 };
 
-export default connect(state => ({ foodProduction: getFoodProduction(state) }))(
-  EndTurn
-);
+export default connect(state => ({
+  endTurnData: getEndTurnData(state)
+}))(EndTurn);

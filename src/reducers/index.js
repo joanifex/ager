@@ -19,7 +19,13 @@ export default (state = initialState, action) => {
     case 'END_TURN':
       return {
         ...state,
-        food: state.food + action.foodProduction
+        food:
+          state.food + action.foodProduction > 0
+            ? state.food + action.foodProduction
+            : 0,
+        populations: action.populationLoss
+          ? state.populations.slice(0, state.populations.length - 1)
+          : state.populations
       };
     case 'CREATE_POPULATION':
       return {

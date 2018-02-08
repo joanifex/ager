@@ -11,7 +11,8 @@ const initialPopulations = [{ id: uuid(), populating: null }];
 const initialState = {
   food: 0,
   populations: initialPopulations,
-  tiles: initialTiles
+  tiles: initialTiles,
+  turn: 1
 };
 
 export default (state = initialState, action) => {
@@ -25,7 +26,8 @@ export default (state = initialState, action) => {
             : 0,
         populations: action.populationLoss
           ? state.populations.slice(0, state.populations.length - 1)
-          : state.populations
+          : state.populations,
+        turn: state.turn + 1
       };
     case 'CREATE_POPULATION':
       return {

@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getFoodProduction } from '../selectors';
 
-export const Stats = ({ availablePopulations, foodProduction, foodStored }) => (
+export const Stats = ({
+  availablePopulations,
+  foodProduction,
+  foodStored,
+  turn
+}) => (
   <header>
+    <ul>
+      <li>Turn: {turn}</li>
+    </ul>
     <ul>
       <li>Available Population: {availablePopulations}</li>
     </ul>
@@ -20,13 +28,15 @@ export const Stats = ({ availablePopulations, foodProduction, foodStored }) => (
 Stats.defaultProps = {
   availablePopulations: 0,
   foodProduction: 0,
-  foodStored: 0
+  foodStored: 0,
+  turn: 0
 };
 
 Stats.propTypes = {
   availablePopulations: PropTypes.number.isRequired,
   foodProduction: PropTypes.number.isRequired,
-  foodStored: PropTypes.number.isRequired
+  foodStored: PropTypes.number.isRequired,
+  turn: PropTypes.number.isRequired
 };
 
 export default connect(state => ({
@@ -35,5 +45,6 @@ export default connect(state => ({
     0
   ),
   foodProduction: getFoodProduction(state),
-  foodStored: state.food
+  foodStored: state.food,
+  turn: state.turn
 }))(Stats);

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
-import tileTypes from './constants/tileTypes';
-import tileData from './data/tiles';
-import { populationPopulatesTile, populationDepopulatesTile } from './actions';
+import tileTypes from '../constants/tileTypes';
+import tileData from '../data/tiles';
+import { populationPopulatesTile, populationDepopulatesTile } from '../actions';
 
 export const Tile = ({
   availablePopulationId,

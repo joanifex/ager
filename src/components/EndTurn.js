@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { endTurn } from './actions';
-import { getFoodProduction } from './selectors';
+import { endTurn } from '../actions';
+import { getFoodProduction } from '../selectors';
 
 export const EndTurn = ({ dispatch, foodProduction }) => (
   <button onClick={() => dispatch(endTurn({ foodProduction }))}>

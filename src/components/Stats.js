@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getFoodProduction } from './selectors';
+import { getFoodProduction } from '../selectors';
 
 export const Stats = ({ availablePopulations, foodProduction, foodStored }) => (
   <header>

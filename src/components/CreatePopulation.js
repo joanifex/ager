@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createPopulation } from './actions';
+import { createPopulation } from '../actions';
 
 export const CreatePopulation = ({ dispatch, food }) => (
   <button disabled={food < 3} onClick={() => dispatch(createPopulation())}>

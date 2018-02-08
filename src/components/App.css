@@ -1,3 +1,7 @@
+body {
+  font-family: sans-serif;
+}
+
 .app {
   align-items: center;
   display: flex;

@@ -6,7 +6,8 @@ import './App.css';
 import CreatePopulation from './CreatePopulation';
 import EndTurn from './EndTurn';
 import Grid from './Grid';
-import Stats from './Stats';
+import Reboot from 'material-ui/Reboot';
+import TopBar from './TopBar';
 
 const App = ({ populationTotal, turn }) => {
   if (populationTotal < 1) {
@@ -16,12 +17,11 @@ const App = ({ populationTotal, turn }) => {
   } else {
     return (
       <div className="app">
-        <div id="container">
-          <Stats />
-          <Grid />
-          <CreatePopulation />
-          <EndTurn />
-        </div>
+        <Reboot />
+        <TopBar />
+        <Grid />
+        <CreatePopulation />
+        <EndTurn />
       </div>
     );
   }
@@ -29,10 +29,10 @@ const App = ({ populationTotal, turn }) => {
 
 App.propTypes = {
   populationTotal: PropTypes.number.isRequired,
-  turn: PropTypes.number.isRequired
+  turn: PropTypes.number.isRequired,
 };
 
 export default connect(({ populations, turn }) => ({
   populationTotal: populations.length,
-  turn
+  turn,
 }))(App);

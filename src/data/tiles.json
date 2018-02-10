@@ -14,5 +14,13 @@
   "lake": {
     "color": "#5399FF",
     "food": 1
+  },
+  "desert": {
+    "color": "orange",
+    "food": 0
+  },
+  "steppe": {
+    "color": "beige",
+    "food": 1
   }
 }

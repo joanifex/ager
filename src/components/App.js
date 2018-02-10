@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './App.css';
-import CreatePopulation from './CreatePopulation';
-import EndTurn from './EndTurn';
 import Grid from './Grid';
 import Reboot from 'material-ui/Reboot';
 import TopBar from './TopBar';
@@ -20,8 +18,6 @@ const App = ({ populationTotal, turn }) => {
         <Reboot />
         <TopBar />
         <Grid />
-        <CreatePopulation />
-        <EndTurn />
       </div>
     );
   }

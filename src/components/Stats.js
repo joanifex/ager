@@ -7,7 +7,7 @@ import './Stats.css';
 export const Stats = ({
   availablePopulations,
   foodProduction,
-  foodStored,
+  foodProduced,
   populations,
   turn,
 }) => (
@@ -17,7 +17,7 @@ export const Stats = ({
       <span>Available: {availablePopulations}</span>
     </div>
     <div className="column">
-      <span>Food Stored: {foodStored}</span>
+      <span>Food Stored: {foodProduced}</span>
       <span>Food Production: {foodProduction}</span>
     </div>
   </div>
@@ -26,14 +26,14 @@ export const Stats = ({
 Stats.defaultProps = {
   availablePopulations: 0,
   foodProduction: 0,
-  foodStored: 0,
+  foodProduced: 0,
   populations: 0,
 };
 
 Stats.propTypes = {
   availablePopulations: PropTypes.number.isRequired,
   foodProduction: PropTypes.number.isRequired,
-  foodStored: PropTypes.number.isRequired,
+  foodProduced: PropTypes.number.isRequired,
   populations: PropTypes.number.isRequired,
 };
 
@@ -43,6 +43,6 @@ export default connect(state => ({
     0,
   ),
   foodProduction: getFoodProduction(state),
-  foodStored: state.food,
+  foodProduced: state.foodProduced,
   populations: state.populations.allIds.length,
 }))(Stats);

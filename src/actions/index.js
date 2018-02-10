@@ -1,20 +1,19 @@
 export const endTurn = endTurnData => ({
   type: 'END_TURN',
-  ...endTurnData
+  ...endTurnData,
 });
 
 export const createPopulation = () => ({
-  type: 'CREATE_POPULATION'
+  type: 'CREATE_POPULATION',
 });
 
 export const populationPopulatesTile = ({ populationId, tileId }) => ({
   type: 'POPULATION_POPULATES_TILE',
   populationId,
-  tileId
+  tileId,
 });
 
-export const populationDepopulatesTile = ({ populationId, tileId }) => ({
-  type: 'POPULATION_DEPOPULATES_TILE',
+export const populationDepopulates = ({ populationId }) => ({
+  type: 'POPULATION_DEPOPULATES',
   populationId,
-  tileId
 });

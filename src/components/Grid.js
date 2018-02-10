@@ -13,7 +13,7 @@ Grid.defaultProps = {
 };
 
 Grid.propTypes = {
-  tiles: PropTypes.shape({ byId: {}, allIds: [] }).isRequired,
+  tiles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(({ tiles: { allIds } }) => ({ tiles: allIds }))(Grid);

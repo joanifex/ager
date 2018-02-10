@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 import tileTypes from '../constants/tileTypes';
 import tileData from '../data/tiles';
-import { populationPopulatesTile, populationDepopulatesTile } from '../actions';
+import { populationPopulatesTile, populationDepopulates } from '../actions';
 import { getPopulations } from '../selectors';
 
 export const Tile = ({
@@ -21,9 +21,8 @@ export const Tile = ({
       populatingPopulationId
         ? () =>
             dispatch(
-              populationDepopulatesTile({
+              populationDepopulates({
                 populationId: populatingPopulationId,
-                tileId,
               }),
             )
         : availablePopulationId

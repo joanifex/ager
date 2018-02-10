@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getFoodProduction } from '../selectors';
+import { getFoodProduction, getPopulations } from '../selectors';
 import './Stats.css';
 
 export const Stats = ({
@@ -38,11 +38,11 @@ Stats.propTypes = {
 };
 
 export default connect(state => ({
-  availablePopulations: state.populations.reduce(
+  availablePopulations: getPopulations(state).reduce(
     (sum, population) => (population.populating === null ? sum + 1 : sum),
     0,
   ),
   foodProduction: getFoodProduction(state),
   foodStored: state.food,
-  populations: state.populations.length,
+  populations: state.populations.allIds.length,
 }))(Stats);

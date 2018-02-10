@@ -5,6 +5,7 @@ import uuid from 'uuid/v4';
 import tileTypes from '../constants/tileTypes';
 import tileData from '../data/tiles';
 import { populationPopulatesTile, populationDepopulatesTile } from '../actions';
+import { getPopulations } from '../selectors';
 
 export const Tile = ({
   availablePopulationId,
@@ -64,11 +65,11 @@ Tile.propTypes = {
   tileType: PropTypes.string.isRequired,
 };
 
-export default connect(({ populations, tiles }, { tileId }) => {
-  const availablePopulation = populations.find(
+export default connect((state, { tileId }) => {
+  const availablePopulation = getPopulations(state).find(
     population => population.populating === null,
   );
-  const populatingPopulation = populations.find(
+  const populatingPopulation = getPopulations(state).find(
     population => population.populating === tileId,
   );
   return {
@@ -76,6 +77,6 @@ export default connect(({ populations, tiles }, { tileId }) => {
     populatingPopulationId: populatingPopulation
       ? populatingPopulation.id
       : null,
-    tileType: tiles.byId[tileId].type,
+    tileType: state.tiles.byId[tileId].type,
   };
 })(Tile);

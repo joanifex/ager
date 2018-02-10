@@ -20,14 +20,27 @@ const initialTiles = Array.from(new Array(25)).reduce(
   { byId: {}, allIds: [] },
 );
 
-const initialPopulations = [{ id: uuid(), populating: null }];
+const newPopulation = () => ({
+  id: uuid(),
+  populating: null,
+});
+
+const initialPopulations = () => {
+  const population = newPopulation();
+  return {
+    byId: {
+      [population.id]: population,
+    },
+    allIds: [population.id],
+  };
+};
 
 const initialGrid = [];
 
 const initialState = {
   food: 0,
   grid: initialGrid,
-  populations: initialPopulations,
+  populations: initialPopulations(),
   tiles: initialTiles,
   turn: 1,
 };
@@ -55,22 +68,30 @@ export default (state = initialState, action) => {
     case 'POPULATION_POPULATES_TILE':
       return {
         ...state,
-        populations: state.populations.map(
-          population =>
-            population.id === action.populationId
-              ? { ...population, populating: action.tileId }
-              : population,
-        ),
+        populations: {
+          ...state.populations,
+          byId: {
+            ...state.populations.byId,
+            [action.populationId]: {
+              ...state.populations.byId[action.populationId],
+              populating: action.tileId,
+            },
+          },
+        },
       };
     case 'POPULATION_DEPOPULATES_TILE':
       return {
         ...state,
-        populations: state.populations.map(
-          population =>
-            population.id === action.populationId
-              ? { ...population, populating: null }
-              : population,
-        ),
+        populations: {
+          ...state.populations,
+          byId: {
+            ...state.populations.byId,
+            [action.populationId]: {
+              ...state.populations.byId[action.populationId],
+              populating: null,
+            },
+          },
+        },
       };
     default:
       return state;

@@ -1,9 +1,17 @@
 import { createSelector } from 'reselect';
 import tileData from '../data/tiles';
 
-const getFood = state => state.food;
-const getPopulations = state => state.populations;
-const getTiles = state => state.tiles;
+const getFoodState = state => state.food;
+const getPopulationsState = state => state.populations;
+const getTilesState = state => state.tiles;
+
+export const getPopulations = createSelector([getPopulationsState], state =>
+  Object.values(state.byId),
+);
+
+export const getTiles = createSelector([getTilesState], state =>
+  Object.values(state.byId),
+);
 
 export const getFoodProduction = createSelector(
   [getPopulations, getTiles],
@@ -15,14 +23,14 @@ export const getFoodProduction = createSelector(
             tileData[tiles.find(tile => tile.id === population.populating).type]
               .food
           : sum,
-      0
-    ) - populations.length
+      0,
+    ) - populations.length,
 );
 
 export const getEndTurnData = createSelector(
-  [getPopulations, getFood, getFoodProduction],
+  [getPopulations, getFoodState, getFoodProduction],
   (populations, food, foodProduction) => ({
     foodProduction,
-    populationLoss: food + foodProduction < 0
-  })
+    populationLoss: food + foodProduction < 0,
+  }),
 );

@@ -9,7 +9,7 @@ export const Grid = ({ tiles }) => (
 );
 
 Grid.defaultProps = {
-  tiles: { byId: {}, allIds: [] },
+  tiles: [],
 };
 
 Grid.propTypes = {

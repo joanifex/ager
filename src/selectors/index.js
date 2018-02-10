@@ -14,14 +14,12 @@ export const getTiles = createSelector([getTilesState], state =>
 );
 
 export const getFoodProduction = createSelector(
-  [getPopulations, getTiles],
-  (populations, tiles) =>
+  [getPopulations, getTiles, getTilesState],
+  (populations, tiles, tilesState) =>
     populations.reduce(
       (sum, population) =>
         population.populating
-          ? sum +
-            tileData[tiles.find(tile => tile.id === population.populating).type]
-              .food
+          ? sum + tileData[tilesState.byId[population.populating].type].food
           : sum,
       0,
     ) - populations.length,

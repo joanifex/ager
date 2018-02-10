@@ -5,17 +5,15 @@ import './Grid.css';
 import Tile from './Tile';
 
 export const Grid = ({ tiles }) => (
-  <div id="map">
-    {tiles.map(tile => <Tile key={tile.id} tileId={tile.id} />)}
-  </div>
+  <div id="map">{tiles.map(tile => <Tile key={tile} tileId={tile} />)}</div>
 );
 
 Grid.defaultProps = {
-  tiles: []
+  tiles: { byId: {}, allIds: [] },
 };
 
 Grid.propTypes = {
-  tiles: PropTypes.arrayOf(PropTypes.object).isRequired
+  tiles: PropTypes.shape({ byId: {}, allIds: [] }).isRequired,
 };
 
-export default connect(({ tiles }) => ({ tiles }))(Grid);
+export default connect(({ tiles: { allIds } }) => ({ tiles: allIds }))(Grid);

@@ -11,7 +11,7 @@ export const Tile = ({
   dispatch,
   populatingPopulationId,
   tileId,
-  tileType
+  tileType,
 }) => (
   <svg
     width="100%"
@@ -22,16 +22,16 @@ export const Tile = ({
             dispatch(
               populationDepopulatesTile({
                 populationId: populatingPopulationId,
-                tileId
-              })
+                tileId,
+              }),
             )
         : availablePopulationId
           ? () =>
               dispatch(
                 populationPopulatesTile({
                   populationId: availablePopulationId,
-                  tileId
-                })
+                  tileId,
+                }),
               )
           : null
     }
@@ -53,7 +53,7 @@ Tile.defaultProps = {
   dispatch: () => ({}),
   populatingPopulationId: null,
   tileId: uuid(),
-  tileType: tileTypes[Math.floor(Math.random() * tileTypes.length)]
+  tileType: tileTypes[Math.floor(Math.random() * tileTypes.length)],
 };
 
 Tile.propTypes = {
@@ -61,21 +61,21 @@ Tile.propTypes = {
   dispatch: PropTypes.func.isRequired,
   populatingPopulatedId: PropTypes.string,
   tileId: PropTypes.string.isRequired,
-  tileType: PropTypes.string.isRequired
+  tileType: PropTypes.string.isRequired,
 };
 
 export default connect(({ populations, tiles }, { tileId }) => {
   const availablePopulation = populations.find(
-    population => population.populating === null
+    population => population.populating === null,
   );
   const populatingPopulation = populations.find(
-    population => population.populating === tileId
+    population => population.populating === tileId,
   );
   return {
     availablePopulationId: availablePopulation ? availablePopulation.id : null,
     populatingPopulationId: populatingPopulation
       ? populatingPopulation.id
       : null,
-    tileType: tiles.find(tile => tile.id === tileId).type
+    tileType: tiles.byId[tileId].type,
   };
 })(Tile);

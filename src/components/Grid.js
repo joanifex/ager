@@ -4,16 +4,18 @@ import PropTypes from 'prop-types';
 import './Grid.css';
 import Tile from './Tile';
 
-export const Grid = ({ tiles }) => (
-  <div id="map">{tiles.map(tile => <Tile key={tile} tileId={tile} />)}</div>
+export const Grid = ({ grid }) => (
+  <div id="map">
+    {grid.map(row => row.map(tile => <Tile key={tile} tileId={tile} />))}
+  </div>
 );
 
 Grid.defaultProps = {
-  tiles: [],
+  grid: [[]],
 };
 
 Grid.propTypes = {
-  tiles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  grid: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
-export default connect(({ tiles: { allIds } }) => ({ tiles: allIds }))(Grid);
+export default connect(({ grid }) => ({ grid }))(Grid);

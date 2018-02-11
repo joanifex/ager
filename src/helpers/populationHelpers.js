@@ -1,6 +1,6 @@
 import uuid from 'uuid/v4';
 
-function createNewPopulation() {
+export function createNewPopulation() {
   return {
     id: uuid(),
     populating: null,

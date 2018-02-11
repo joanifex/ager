@@ -7,7 +7,7 @@ import Grid from './Grid';
 import Reboot from 'material-ui/Reboot';
 import TopBar from './TopBar';
 
-const App = ({ populationTotal, turn }) => {
+export const App = ({ populationTotal, turn }) => {
   if (populationTotal < 1) {
     return 'You Lose';
   } else if (turn > 10) {
@@ -21,6 +21,11 @@ const App = ({ populationTotal, turn }) => {
       </div>
     );
   }
+};
+
+App.defaultProps = {
+  populationTotal: 1,
+  turn: 1,
 };
 
 App.propTypes = {

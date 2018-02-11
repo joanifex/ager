@@ -6,10 +6,19 @@ import reducers from './reducers';
 import App from './components/App';
 import 'typeface-roboto';
 
+import { createInitialPopulations } from './helpers/populationHelpers';
+import { createInitialTiles } from './helpers/tileHelpers';
+
+const initialState = {
+  populations: createInitialPopulations(),
+  tiles: createInitialTiles(),
+};
+
 ReactDOM.render(
   <Provider
     store={createStore(
       reducers,
+      initialState,
       window.__REDUX_DEVTOOLS_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__(),
     )}

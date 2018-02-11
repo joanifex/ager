@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import tileData from '../data/tiles';
 
-const getFoodState = state => state.food;
+const getFoodProducedState = state => state.foodProduced;
 const getPopulationsState = state => state.populations;
 const getTilesState = state => state.tiles;
 
@@ -26,9 +26,9 @@ export const getFoodProduction = createSelector(
 );
 
 export const getEndTurnData = createSelector(
-  [getPopulations, getFoodState, getFoodProduction],
-  (populations, food, foodProduction) => ({
+  [getPopulations, getFoodProducedState, getFoodProduction],
+  (populations, foodProduced, foodProduction) => ({
     foodProduction,
-    populationLoss: food + foodProduction < 0,
+    populationLoss: foodProduced + foodProduction < 0,
   }),
 );

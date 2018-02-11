@@ -1,29 +1,12 @@
-import uuid from 'uuid/v4';
+const initialState = {
+  byId: {},
+  allIds: [],
+};
 
-function createNewPopulation() {
-  return {
-    id: uuid(),
-    populating: null,
-  };
-}
-
-function createInitialPopulations() {
-  const population = createNewPopulation();
-  return {
-    byId: {
-      [population.id]: population,
-    },
-    allIds: [population.id],
-  };
-}
-
-export default function populationsReducer(
-  state = createInitialPopulations(),
-  action,
-) {
+export default function populationsReducer(state = initialState, action) {
   switch (action.type) {
     case 'CREATE_POPULATION':
-      const newPopulation = createNewPopulation();
+      const { newPopulation } = action;
       return {
         byId: {
           ...state.byId,

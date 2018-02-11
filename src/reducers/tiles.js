@@ -1,17 +1,21 @@
 import uuid from 'uuid/v4';
 import tileTypes from '../constants/tileTypes';
 
-function randomTile() {
+export function getRandomTileType() {
+  return tileTypes[Math.floor(Math.random() * tileTypes.length)];
+}
+
+export function createRandomTile() {
   return {
-    type: tileTypes[Math.floor(Math.random() * tileTypes.length)],
+    type: getRandomTileType(),
     id: uuid(),
   };
 }
 
-function createInitialTiles() {
+export function createInitialTiles() {
   return Array.from(new Array(25)).reduce(
     (tiles, tile) => {
-      const newTile = randomTile();
+      const newTile = createRandomTile();
       return {
         byId: {
           ...tiles.byId,

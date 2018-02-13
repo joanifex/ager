@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers';
 import App from './components/App';
 import createPopulationMiddleware from './middleware/createPopulationMiddleware';
-import 'typeface-roboto';
 
 import { createInitialGrid } from './helpers/gridHelpers';
 import { createInitialPopulations } from './helpers/populationHelpers';

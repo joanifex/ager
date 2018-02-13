@@ -5,8 +5,6 @@
   "dependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
-    "material-ui": "next",
-    "material-ui-icons": "^1.0.0-beta.17",
     "prettier": "^1.10.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -15,7 +13,6 @@
     "react-scripts": "1.1.0",
     "redux": "^3.7.2",
     "reselect": "^3.0.1",
-    "typeface-roboto": "^0.0.54",
     "uuid": "^3.2.1"
   },
   "lint-staged": {

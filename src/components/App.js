@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Grid from './Grid';
-import Reboot from 'material-ui/Reboot';
 import TopBar from './TopBar';
 
 export const App = ({ populationTotal, turn }) => {
@@ -15,8 +14,8 @@ export const App = ({ populationTotal, turn }) => {
   } else {
     return (
       <div className="app">
-        <Reboot />
         <TopBar />
+        <hr />
         <Grid />
       </div>
     );

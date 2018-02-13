@@ -1,0 +1,6 @@
+#topBar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10% 20% 70%;
+  grid-auto-flow: column;
+}

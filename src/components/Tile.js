@@ -8,10 +8,6 @@ import { populationPopulatesTile, populationDepopulates } from '../actions';
 import { getPopulations } from '../selectors';
 import { getRiverBordersByTileId } from '../selectors/gridSelectors';
 
-const styles = {
-  riverBorder: { border: '1px blue solid' },
-};
-
 export const Tile = ({
   availablePopulationId,
   dispatch,
@@ -95,7 +91,6 @@ export default connect((state, { tileId }) => {
   const populatingPopulation = getPopulations(state).find(
     population => population.populating === tileId,
   );
-  const borders = getRiverBordersByTileId(state);
   return {
     availablePopulationId: availablePopulation ? availablePopulation.id : null,
     populatingPopulationId: populatingPopulation

@@ -5,7 +5,8 @@ import uuid from 'uuid/v4';
 import tileTypes from '../constants/tileTypes';
 import tileData from '../data/tiles';
 import { populationPopulatesTile, populationDepopulates } from '../actions';
-import { getPopulations, getRiverBordersByTileId } from '../selectors';
+import { getPopulations } from '../selectors';
+import { getRiverBordersByTileId } from '../selectors/gridSelectors';
 
 const styles = {
   riverBorder: { border: '1px blue solid' },

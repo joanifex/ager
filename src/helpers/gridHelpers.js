@@ -13,17 +13,17 @@ function createGridRivers() {
     {
       path: [
         [0, 0],
-        [0, 1],
+        [1, 0],
         [1, 1],
-        [1, 2],
+        [2, 1],
         [2, 2],
-        [2, 3],
+        [3, 2],
         [3, 3],
-        [3, 4],
+        [4, 3],
         [4, 4],
-        [4, 5],
+        [5, 4],
         [5, 5],
-        [5, 6],
+        [6, 5],
         [6, 6],
       ],
     },
@@ -50,12 +50,16 @@ export function areVerticesBorderingRiver({ rivers, vertices }) {
   return rivers.some(river =>
     river.path.some((node, index) => {
       const nextNode = river.path[index + 1];
+      const prevNode = river.path[index - 1];
       return (
         node[0] === vertices[0][0] &&
         node[1] === vertices[0][1] &&
-        nextNode &&
-        nextNode[0] === vertices[1][0] &&
-        nextNode[1] === vertices[1][1]
+        ((nextNode &&
+          nextNode[0] === vertices[1][0] &&
+          nextNode[1] === vertices[1][1]) ||
+          (prevNode &&
+            prevNode[0] === vertices[1][0] &&
+            prevNode[1] === vertices[1][1]))
       );
     }),
   );

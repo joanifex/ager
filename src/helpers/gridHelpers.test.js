@@ -17,10 +17,17 @@ describe('getVerticesForCoordinates', () => {
 });
 
 describe('areVerticesBorderingRiver', () => {
-  const rivers = [{ path: [[0, 0], [0, 1], [1, 1], [1, 2], [2, 2]] }];
+  const rivers = [
+    { path: [[0, 0], [0, 1], [1, 1], [1, 2], [2, 2]] },
+    { path: [[2, 2], [2, 1], [2, 0]] },
+  ];
   it('should return true when vertices are shared with a river', () => {
     const vertices = [[1, 1], [1, 2]];
     expect(areVerticesBorderingRiver({ rivers, vertices })).toBe(true);
+    const backwardsVertices = [[2, 1], [2, 2]];
+    expect(
+      areVerticesBorderingRiver({ rivers, vertices: backwardsVertices }),
+    ).toBe(true);
   });
   it('should return false when vertices are not shared with a river', () => {
     const vertices = [[0, 2], [1, 2]];

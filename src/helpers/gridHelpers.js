@@ -9,25 +9,29 @@ function createGridTiles(tiles) {
 }
 
 function createGridRivers() {
-  return [
-    {
-      path: [
-        [0, 0],
-        [1, 0],
-        [1, 1],
-        [2, 1],
-        [2, 2],
-        [3, 2],
-        [3, 3],
-        [4, 3],
-        [4, 4],
-        [5, 4],
-        [5, 5],
-        [6, 5],
-        [6, 6],
-      ],
-    },
-  ];
+  const riverStartPosition = Math.floor(Math.random() * 3);
+  const riverSide = Math.floor(Math.random() * 2) === 0 ? 'top' : 'left';
+  const riverStartVertex =
+    riverSide === 'top' ? [riverStartPosition, 0] : [0, riverStartPosition];
+
+  const river = { path: [riverStartVertex] };
+  while (
+    river.path[river.path.length - 1][0] !== 5 &&
+    river.path[river.path.length - 1][1] !== 5
+  ) {
+    let prevNode = river.path[river.path.length - 1];
+    let direction = Math.floor(Math.random() * 2) === 0 ? 'down' : 'bottom';
+    let isSecondNode = river.path.length === 1;
+    if (isSecondNode) {
+      direction = riverSide === 'top' ? 'down' : 'bottom';
+    }
+    let nextNode =
+      direction === 'down'
+        ? [prevNode[0], prevNode[1] + 1]
+        : [prevNode[0] + 1, prevNode[1]];
+    river.path.push(nextNode);
+  }
+  return [river];
 }
 
 export function createInitialGrid(tiles) {

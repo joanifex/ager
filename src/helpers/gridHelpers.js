@@ -9,7 +9,25 @@ function createGridTiles(tiles) {
 }
 
 function createGridRivers() {
-  return [];
+  return [
+    {
+      path: [
+        [0, 0],
+        [0, 1],
+        [1, 1],
+        [1, 2],
+        [2, 2],
+        [2, 3],
+        [3, 3],
+        [3, 4],
+        [4, 4],
+        [4, 5],
+        [5, 5],
+        [5, 6],
+        [6, 6],
+      ],
+    },
+  ];
 }
 
 export function createInitialGrid(tiles) {
@@ -17,4 +35,28 @@ export function createInitialGrid(tiles) {
     rivers: createGridRivers(),
     tiles: createGridTiles(tiles),
   };
+}
+
+export function getVerticesForCoordinates(coordinates) {
+  return {
+    topLeft: [coordinates[0], coordinates[1]],
+    topRight: [coordinates[0] + 1, coordinates[1]],
+    bottomLeft: [coordinates[0], coordinates[1] + 1],
+    bottomRight: [coordinates[0] + 1, coordinates[1] + 1],
+  };
+}
+
+export function areVerticesBorderingRiver({ rivers, vertices }) {
+  return rivers.some(river =>
+    river.path.some((node, index) => {
+      const nextNode = river.path[index + 1];
+      return (
+        node[0] === vertices[0][0] &&
+        node[1] === vertices[0][1] &&
+        nextNode &&
+        nextNode[0] === vertices[1][0] &&
+        nextNode[1] === vertices[1][1]
+      );
+    }),
+  );
 }

@@ -5,7 +5,7 @@ import './Grid.css';
 import Tile from './Tile';
 
 export const Grid = ({ tiles }) => (
-  <div id="map">
+  <div id="grid">
     {tiles.map(row => row.map(tile => <Tile key={tile} tileId={tile} />))}
   </div>
 );

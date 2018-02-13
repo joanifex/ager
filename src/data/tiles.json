@@ -19,6 +19,10 @@
     "color": "orange",
     "food": 0
   },
+  "sea": {
+    "color": "#123456",
+    "food": 0
+  },
   "steppe": {
     "color": "beige",
     "food": 1

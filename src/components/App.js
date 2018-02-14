@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './App.css';
+import CreatePopulation from './CreatePopulation';
+import EndTurn from './EndTurn';
 import Grid from './Grid';
 import TopBar from './TopBar';
 
@@ -17,6 +19,9 @@ export const App = ({ populationTotal, turn }) => {
         <TopBar />
         <hr />
         <Grid />
+        <hr />
+        <CreatePopulation />
+        <EndTurn />
       </div>
     );
   }

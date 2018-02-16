@@ -3,6 +3,7 @@ import {
   endTurn,
   populationDepopulates,
   populationPopulatesTile,
+  screenChange,
 } from './index';
 
 describe('endTurn', () => {
@@ -50,5 +51,16 @@ describe('populationPopulatesTile', () => {
       ...populateData,
     };
     expect(populationPopulatesTile(populateData)).toEqual(expectedAction);
+  });
+});
+
+describe('screenChange', () => {
+  it('should create an action for a screen change', () => {
+    const newScreen = 'game';
+    const expected = {
+      type: 'SCREEN_CHANGE',
+      newScreen,
+    };
+    expect(screenChange({ newScreen })).toEqual(expected);
   });
 });

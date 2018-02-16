@@ -18,3 +18,8 @@ export const populationPopulatesTile = ({ populationId, tileId }) => ({
   populationId,
   tileId,
 });
+
+export const screenChange = ({ newScreen }) => ({
+  type: 'SCREEN_CHANGE',
+  newScreen,
+});

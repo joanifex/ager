@@ -50,6 +50,8 @@ export default function populationsReducer(state = initialState, action) {
           },
         },
       };
+    case 'START_NEW_GAME':
+      return action.populations;
     default:
       return state;
   }

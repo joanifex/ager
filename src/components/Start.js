@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './Start.css';
-import { screenChange } from '../actions';
+import { startNewGame } from '../actions';
 
 export const Start = ({ dispatch }) => (
   <div className="start">
     <header>Athena</header>
-    <button onClick={() => dispatch(screenChange({ newScreen: 'game' }))}>
-      Start
-    </button>
+    <button onClick={() => dispatch(startNewGame())}>Start</button>
   </div>
 );
 

@@ -18,8 +18,9 @@ export const populationPopulatesTile = ({ populationId, tileId }) => ({
   tileId,
 });
 
-export const restart = () => ({
-  type: 'RESTART',
+export const startNewGame = () => ({
+  type: 'START_NEW_GAME',
+  newScreen: 'game',
 });
 
 export const screenChange = ({ newScreen }) => ({

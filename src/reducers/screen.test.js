@@ -24,4 +24,13 @@ describe('screen reducer', () => {
       expect(reducer(undefined, changeScreenAction)).toEqual(newScreen);
     });
   });
+  describe('START_NEW_GAME', () => {
+    it('should change to the game screen', () => {
+      const startNewGameAction = {
+        type: 'START_NEW_GAME',
+        newScreen: 'game',
+      };
+      expect(reducer(undefined, startNewGameAction)).toEqual('game');
+    });
+  });
 });

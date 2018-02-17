@@ -3,8 +3,8 @@ import {
   endTurn,
   populationDepopulates,
   populationPopulatesTile,
-  restart,
   screenChange,
+  startNewGame,
 } from './index';
 
 describe('endTurn', () => {
@@ -55,10 +55,10 @@ describe('populationPopulatesTile', () => {
   });
 });
 
-describe('restart', () => {
-  it('should create an action for a game restart', () => {
-    const expected = { type: 'RESTART' };
-    expect(restart()).toEqual(expected);
+describe('startNewGame', () => {
+  it('should create an action to start a new game', () => {
+    const expected = { type: 'START_NEW_GAME', newScreen: 'game' };
+    expect(startNewGame()).toEqual(expected);
   });
 });
 

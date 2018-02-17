@@ -77,4 +77,14 @@ describe('populations reducer', () => {
       );
     });
   });
+  describe('START_NEW_GAME', () => {
+    it('should return the new populations', () => {
+      const populations = { byId: {}, allIds: [] };
+      const startNewGameAction = {
+        type: 'START_NEW_GAME',
+        populations,
+      };
+      expect(reducer(undefined, startNewGameAction)).toEqual(populations);
+    });
+  });
 });

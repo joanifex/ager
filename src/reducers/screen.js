@@ -8,6 +8,8 @@ export default function screenReducer(state = 'start', action) {
       }
     case 'SCREEN_CHANGE':
       return action.newScreen;
+    case 'START_NEW_GAME':
+      return action.newScreen;
     default:
       return state;
   }

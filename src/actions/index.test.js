@@ -3,6 +3,7 @@ import {
   endTurn,
   populationDepopulates,
   populationPopulatesTile,
+  restart,
   screenChange,
 } from './index';
 
@@ -51,6 +52,13 @@ describe('populationPopulatesTile', () => {
       ...populateData,
     };
     expect(populationPopulatesTile(populateData)).toEqual(expectedAction);
+  });
+});
+
+describe('restart', () => {
+  it('should create an action for a game restart', () => {
+    const expected = { type: 'RESTART' };
+    expect(restart()).toEqual(expected);
   });
 });
 

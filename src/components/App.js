@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Game from './Game';
+import Loss from './Loss';
 import Start from './Start';
 
 export const App = ({ screen }) => (
@@ -12,6 +13,8 @@ export const App = ({ screen }) => (
       switch (screen) {
         case 'game':
           return <Game />;
+        case 'loss':
+          return <Loss />;
         case 'start':
           return <Start />;
         default:

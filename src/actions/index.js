@@ -2,10 +2,9 @@ export const createPopulation = () => ({
   type: 'CREATE_POPULATION',
 });
 
-export const endTurn = ({ foodProduction, populationLoss }) => ({
+export const endTurn = endTurnData => ({
   type: 'END_TURN',
-  foodProduction,
-  populationLoss,
+  ...endTurnData,
 });
 
 export const populationDepopulates = ({ populationId }) => ({

@@ -28,8 +28,12 @@ export const getFoodProduction = createSelector(
 
 export const getEndTurnData = createSelector(
   [getPopulations, getFoodProducedState, getFoodProduction],
-  (populations, foodProduced, foodProduction) => ({
-    foodProduction,
-    populationLoss: foodProduced + foodProduction < 0,
-  }),
+  (populations, foodProduced, foodProduction) => {
+    const populationLoss = foodProduced + foodProduction < 0;
+    return {
+      foodProduction,
+      populationLoss,
+      isGameLoss: populationLoss ? populations.length - 1 < 1 : false,
+    };
+  },
 );

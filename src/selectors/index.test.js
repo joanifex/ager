@@ -54,42 +54,57 @@ describe('getFoodProduction', () => {
 });
 
 describe('getEndTurnData', () => {
+  const state = {
+    foodProduced: 0,
+    populations: {
+      byId: {
+        0: { id: '0', populating: null },
+      },
+    },
+    tiles: {
+      byId: {
+        0: { type: 'grass' },
+      },
+    },
+  };
   it('should return the end turn data', () => {
-    const state = {
+    const newState = {
+      ...state,
       populations: {
         byId: {
           0: { id: '0', populating: '0' },
-        },
-      },
-      tiles: {
-        byId: {
-          0: { type: 'grass' },
         },
       },
     };
     const expected = {
       foodProduction: 1,
       populationLoss: false,
+      isGameLoss: false,
     };
-    expect(getEndTurnData(state)).toEqual(expected);
+    expect(getEndTurnData(newState)).toEqual(expected);
   });
   it('should determine a population loss', () => {
-    const state = {
-      foodProduced: 0,
+    const newState = {
+      ...state,
       populations: {
         byId: {
           0: { id: '0', populating: null },
-        },
-      },
-      tiles: {
-        byId: {
-          0: { type: 'grass' },
+          1: { id: '1', populating: null },
         },
       },
     };
     const expected = {
+      foodProduction: -2,
+      populationLoss: true,
+      isGameLoss: false,
+    };
+    expect(getEndTurnData(newState)).toEqual(expected);
+  });
+  it('should determine a game loss', () => {
+    const expected = {
       foodProduction: -1,
       populationLoss: true,
+      isGameLoss: true,
     };
     expect(getEndTurnData(state)).toEqual(expected);
   });

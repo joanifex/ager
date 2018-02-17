@@ -14,14 +14,18 @@ describe('foodProduced reducer', () => {
     });
   });
   describe('END_TURN', () => {
-    const endTurnAction = {
-      type: 'END_TURN',
-    };
+    const endTurnAction = { type: 'END_TURN' };
     it('should reduce the food by three', () => {
       expect(reducer(3, endTurnAction)).toEqual(0);
     });
     it('should floor at zero', () => {
       expect(reducer(2, endTurnAction)).toEqual(0);
+    });
+  });
+  describe('START_NEW_GAME', () => {
+    const startNewGameAction = { type: 'START_NEW_GAME' };
+    it('should return the initial state of zero', () => {
+      expect(reducer(10, startNewGameAction)).toEqual(0);
     });
   });
 });

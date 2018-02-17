@@ -13,4 +13,10 @@ describe('turn reducer', () => {
       ).toEqual(2);
     });
   });
+  describe('START_NEW_GAME', () => {
+    const startNewGameAction = { type: 'START_NEW_GAME' };
+    it('should return the initial state of one', () => {
+      expect(reducer(10, startNewGameAction)).toEqual(1);
+    });
+  });
 });

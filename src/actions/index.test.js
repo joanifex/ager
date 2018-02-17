@@ -4,6 +4,7 @@ import {
   populationDepopulates,
   populationPopulatesTile,
   screenChange,
+  selectTile,
   startNewGame,
 } from './index';
 
@@ -57,13 +58,6 @@ describe('populationPopulatesTile', () => {
   });
 });
 
-describe('startNewGame', () => {
-  it('should create an action to start a new game', () => {
-    const expected = { type: 'START_NEW_GAME', newScreen: 'game' };
-    expect(startNewGame()).toEqual(expected);
-  });
-});
-
 describe('screenChange', () => {
   it('should create an action for a screen change', () => {
     const newScreen = 'game';
@@ -72,5 +66,20 @@ describe('screenChange', () => {
       newScreen,
     };
     expect(screenChange({ newScreen })).toEqual(expected);
+  });
+});
+
+describe('selectTile', () => {
+  it('should create an action to select a tile', () => {
+    const tileId = '0';
+    const expected = { type: 'SELECT_TILE', tileId };
+    expect(selectTile({ tileId })).toEqual(expected);
+  });
+});
+
+describe('startNewGame', () => {
+  it('should create an action to start a new game', () => {
+    const expected = { type: 'START_NEW_GAME', newScreen: 'game' };
+    expect(startNewGame()).toEqual(expected);
   });
 });

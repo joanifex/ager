@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 import tileTypes from '../constants/tileTypes';
 import tileData from '../data/tiles';
-import { populationPopulatesTile, populationDepopulates } from '../actions';
+import { selectTile } from '../actions';
 import { getPopulations } from '../selectors';
 import { getRiverBordersByTileId } from '../selectors/gridSelectors';
 
 export const Tile = ({
-  availablePopulationId,
   dispatch,
-  populatingPopulationId,
+  isPopulated,
   riverBorders,
   tileId,
   tileType,
@@ -25,24 +24,7 @@ export const Tile = ({
       borderRight: riverBorders.right ? '1px blue solid' : null,
       borderLeft: riverBorders.left ? '1px blue solid' : null,
     }}
-    onClick={
-      populatingPopulationId
-        ? () =>
-            dispatch(
-              populationDepopulates({
-                populationId: populatingPopulationId,
-              }),
-            )
-        : availablePopulationId
-          ? () =>
-              dispatch(
-                populationPopulatesTile({
-                  populationId: availablePopulationId,
-                  tileId,
-                }),
-              )
-          : null
-    }
+    onClick={() => dispatch(selectTile({ tileId }))}
   >
     <rect
       width="100%"
@@ -50,16 +32,13 @@ export const Tile = ({
       fill={tileData[tileType].color}
       stroke="black"
     />
-    {populatingPopulationId && (
-      <circle cx="50%" cy="50%" r="10%" stroke="black" />
-    )}
+    {isPopulated && <circle cx="50%" cy="50%" r="10%" stroke="black" />}
   </svg>
 );
 
 Tile.defaultProps = {
-  availablePopulationId: null,
   dispatch: () => ({}),
-  populatingPopulationId: null,
+  isPopulated: false,
   riverBorders: {
     top: false,
     bottom: false,
@@ -71,9 +50,8 @@ Tile.defaultProps = {
 };
 
 Tile.propTypes = {
-  availablePopulationId: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
-  populatingPopulatedId: PropTypes.string,
+  isPopulated: PropTypes.bool.isRequired,
   riverBorders: PropTypes.shape({
     top: PropTypes.bool,
     bottom: PropTypes.bool,
@@ -84,19 +62,10 @@ Tile.propTypes = {
   tileType: PropTypes.string.isRequired,
 };
 
-export default connect((state, { tileId }) => {
-  const availablePopulation = getPopulations(state).find(
-    population => population.populating === null,
-  );
-  const populatingPopulation = getPopulations(state).find(
+export default connect((state, { tileId }) => ({
+  isPopulated: getPopulations(state).some(
     population => population.populating === tileId,
-  );
-  return {
-    availablePopulationId: availablePopulation ? availablePopulation.id : null,
-    populatingPopulationId: populatingPopulation
-      ? populatingPopulation.id
-      : null,
-    riverBorders: getRiverBordersByTileId(state)[tileId],
-    tileType: state.tiles.byId[tileId].type,
-  };
-})(Tile);
+  ),
+  riverBorders: getRiverBordersByTileId(state)[tileId],
+  tileType: state.tiles.byId[tileId].type,
+}))(Tile);

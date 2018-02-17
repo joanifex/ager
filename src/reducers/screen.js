@@ -3,6 +3,8 @@ export default function screenReducer(state = 'start', action) {
     case 'END_TURN':
       if (action.isGameLoss) {
         return 'loss';
+      } else if (action.isGameWin) {
+        return 'win';
       } else {
         return state;
       }

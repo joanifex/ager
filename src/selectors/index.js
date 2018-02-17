@@ -4,6 +4,7 @@ import tileData from '../data/tiles';
 const getFoodProducedState = state => state.foodProduced;
 const getPopulationsState = state => state.populations;
 const getTilesState = state => state.tiles;
+const getTurn = state => state.turn;
 
 export const getPopulations = createSelector(
   [getPopulationsState],
@@ -27,13 +28,19 @@ export const getFoodProduction = createSelector(
 );
 
 export const getEndTurnData = createSelector(
-  [getPopulations, getFoodProducedState, getFoodProduction],
-  (populations, foodProduced, foodProduction) => {
+  [getPopulations, getFoodProducedState, getFoodProduction, getTurn],
+  (populations, foodProduced, foodProduction, turn) => {
     const populationLoss = foodProduced + foodProduction < 0;
     return {
       foodProduction,
       populationLoss,
       isGameLoss: populationLoss ? populations.length - 1 < 1 : false,
+      isGameWin: turn > 14,
     };
   },
+);
+
+export const getScore = createSelector(
+  [getPopulations],
+  populations => populations.length * 25,
 );

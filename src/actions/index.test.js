@@ -12,6 +12,8 @@ describe('endTurn', () => {
     const endTurnData = {
       foodProduction: 0,
       populationLoss: false,
+      isGameLoss: false,
+      isGameWin: false,
     };
     const expectedAction = {
       type: 'END_TURN',

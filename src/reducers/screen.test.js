@@ -13,6 +13,13 @@ describe('screen reducer', () => {
       };
       expect(reducer(undefined, endTurnAction)).toEqual('loss');
     });
+    it('should change to win screen when game is won', () => {
+      const endTurnAction = {
+        type: 'END_TURN',
+        isGameWin: true,
+      };
+      expect(reducer(undefined, endTurnAction)).toEqual('win');
+    });
   });
   describe('SCREEN_CHANGE', () => {
     it('should change the screen', () => {

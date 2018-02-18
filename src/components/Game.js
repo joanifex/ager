@@ -1,7 +1,6 @@
 import React from 'react';
 
-import CreatePopulation from './CreatePopulation';
-import EndTurn from './EndTurn';
+import BottomBar from './BottomBar';
 import Grid from './Grid';
 import TopBar from './TopBar';
 
@@ -11,8 +10,7 @@ export const Game = () => (
     <hr />
     <Grid />
     <hr />
-    <CreatePopulation />
-    <EndTurn />
+    <BottomBar />
   </div>
 );
 

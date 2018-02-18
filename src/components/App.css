@@ -1,3 +1,13 @@
+.flex {
+  display: flex;
+}
+.flex-space-around {
+  justify-content: space-around;
+}
+.flex-column {
+  flex-direction: column;
+}
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 /**

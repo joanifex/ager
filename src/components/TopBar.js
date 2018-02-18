@@ -2,10 +2,9 @@ import React from 'react';
 
 import Stats from './Stats';
 import TurnCounter from './TurnCounter';
-import './TopBar.css';
 
 export const TopBar = () => (
-  <header id="topBar">
+  <header className="flex flex-space-around">
     <TurnCounter />
     <Stats />
   </header>

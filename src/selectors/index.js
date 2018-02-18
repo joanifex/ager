@@ -1,23 +1,14 @@
 import { createSelector } from 'reselect';
+import { getPopulations } from './populationSelectors';
+import { getTilesState } from './tilesSelectors';
 import tileData from '../data/tiles';
 
 const getFoodProducedState = state => state.foodProduced;
-const getPopulationsState = state => state.populations;
-const getTilesState = state => state.tiles;
 const getTurn = state => state.turn;
 
-export const getPopulations = createSelector(
-  [getPopulationsState],
-  populations => Object.values(populations.byId),
-);
-
-export const getTiles = createSelector([getTilesState], tiles =>
-  Object.values(tiles.byId),
-);
-
 export const getFoodProduction = createSelector(
-  [getPopulations, getTiles, getTilesState],
-  (populations, tiles, tilesState) =>
+  [getPopulations, getTilesState],
+  (populations, tilesState) =>
     populations.reduce(
       (sum, population) =>
         population.populating

@@ -1,7 +1,7 @@
 import { createInitialGrid } from '../helpers/gridHelpers';
 import { createInitialPopulations } from '../helpers/populationHelpers';
 import { createInitialTiles } from '../helpers/tileHelpers';
-import { getTiles } from '../selectors';
+import { getTiles } from '../selectors/tilesSelectors';
 
 const createPopulationMiddleware = store => next => action => {
   if (action.type === 'START_NEW_GAME') {

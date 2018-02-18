@@ -5,7 +5,7 @@ import uuid from 'uuid/v4';
 import tileTypes from '../constants/tileTypes';
 import tileData from '../data/tiles';
 import { selectTile } from '../actions';
-import { getPopulations } from '../selectors';
+import { getPopulations } from '../selectors/populationSelectors';
 import { getRiverBordersByTileId } from '../selectors/gridSelectors';
 
 export const Tile = ({

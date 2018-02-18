@@ -1,40 +1,4 @@
-import {
-  getPopulations,
-  getTiles,
-  getFoodProduction,
-  getEndTurnData,
-  getScore,
-} from './index';
-
-describe('getPopulations', () => {
-  it('should return all populations', () => {
-    const state = {
-      populations: {
-        byId: {
-          1: 'test',
-          2: 'test',
-        },
-      },
-    };
-    const expected = ['test', 'test'];
-    expect(getPopulations(state)).toEqual(expected);
-  });
-});
-
-describe('getTiles', () => {
-  it('should return all tiles', () => {
-    const state = {
-      tiles: {
-        byId: {
-          1: 'test',
-          2: 'test',
-        },
-      },
-    };
-    const expected = ['test', 'test'];
-    expect(getTiles(state)).toEqual(expected);
-  });
-});
+import { getFoodProduction, getEndTurnData, getScore } from './index';
 
 describe('getFoodProduction', () => {
   it('should calculate food production', () => {

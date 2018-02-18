@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getFoodProduction, getPopulations } from '../selectors';
+import { getFoodProduction } from '../selectors';
+import { getPopulations } from '../selectors/populationSelectors';
 import './Stats.css';
 
 export const Stats = ({

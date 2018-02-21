@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { getPopulations } from './populationSelectors';
-import { getTilesState } from './tilesSelectors';
+import { getTiles, getTilesState } from './tilesSelectors';
 import tileData from '../data/tiles';
 
 const getFoodProducedState = state => state.foodProduced;
@@ -34,4 +34,33 @@ export const getEndTurnData = createSelector(
 export const getScore = createSelector(
   [getPopulations],
   populations => populations.length * 25,
+);
+
+export const getTilesByIdWithPopulators = createSelector(
+  [getPopulations, getTiles],
+  (populations, tiles) => {
+    const populatorsByTileId = populations.reduce(
+      (populatorsById, population) =>
+        Object.assign(
+          {},
+          populatorsById,
+          population.populating
+            ? { [population.populating]: population.id }
+            : null,
+        ),
+      {},
+    );
+    return tiles.reduce(
+      (tilesByIdWithPopulators, tile) => ({
+        ...tilesByIdWithPopulators,
+        [tile.id]: {
+          ...tile,
+          populator: populatorsByTileId[tile.id]
+            ? populatorsByTileId[tile.id]
+            : null,
+        },
+      }),
+      {},
+    );
+  },
 );

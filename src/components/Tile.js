@@ -19,10 +19,10 @@ export const Tile = ({
     width="100%"
     height="100%"
     style={{
-      borderTop: riverBorders.top ? '1px blue solid' : null,
-      borderBottom: riverBorders.bottom ? '1px blue solid' : null,
-      borderRight: riverBorders.right ? '1px blue solid' : null,
-      borderLeft: riverBorders.left ? '1px blue solid' : null,
+      borderTop: riverBorders.top ? '5px blue solid' : null,
+      borderBottom: riverBorders.bottom ? '5px blue solid' : null,
+      borderRight: riverBorders.right ? '5px blue solid' : null,
+      borderLeft: riverBorders.left ? '5px blue solid' : null,
     }}
     onClick={() => dispatch(selectTile({ tileId }))}
   >

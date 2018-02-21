@@ -11,6 +11,7 @@ import { getRiverBordersByTileId } from '../selectors/gridSelectors';
 export const Tile = ({
   dispatch,
   isPopulated,
+  isSelected,
   riverBorders,
   tileId,
   tileType,
@@ -24,13 +25,14 @@ export const Tile = ({
       borderRight: riverBorders.right ? '5px blue solid' : null,
       borderLeft: riverBorders.left ? '5px blue solid' : null,
     }}
-    onClick={() => dispatch(selectTile({ tileId }))}
+    onClick={() => dispatch(selectTile({ tileId: isSelected ? null : tileId }))}
   >
     <rect
       width="100%"
       height="100%"
       fill={tileData[tileType].color}
-      stroke="black"
+      stroke={isSelected ? 'gold' : 'black'}
+      strokeWidth={isSelected ? '5' : '1'}
     />
     {isPopulated && <circle cx="50%" cy="50%" r="10%" stroke="black" />}
   </svg>
@@ -39,6 +41,7 @@ export const Tile = ({
 Tile.defaultProps = {
   dispatch: () => ({}),
   isPopulated: false,
+  isSelected: false,
   riverBorders: {
     top: false,
     bottom: false,
@@ -52,6 +55,7 @@ Tile.defaultProps = {
 Tile.propTypes = {
   dispatch: PropTypes.func.isRequired,
   isPopulated: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool.isRequired,
   riverBorders: PropTypes.shape({
     top: PropTypes.bool,
     bottom: PropTypes.bool,
@@ -66,6 +70,7 @@ export default connect((state, { tileId }) => ({
   isPopulated: getPopulations(state).some(
     population => population.populating === tileId,
   ),
+  isSelected: state.selectedTile === tileId,
   riverBorders: getRiverBordersByTileId(state)[tileId],
   tileType: state.tiles.byId[tileId].type,
 }))(Tile);
